@@ -1,10 +1,10 @@
-const express = require('express');
+var express = require('express');
 const bodyParser =require('body-parser');
 
-const leaderRouter = express.Router();
+var leaderRouter = express.Router();
 leaderRouter.use(bodyParser.json());
 
-leaderRouter.route('/leaders')
+leaderRouter.route('/')
     .all((req,res,next) => {
         res.statusCode = 200;
         res.setHeader('Content-Type','text/html');
@@ -26,7 +26,7 @@ leaderRouter.route('/leaders')
 
 
 
-    leaderRouter.route('/leaders/:leaderId')//route
+    leaderRouter.route('/:leaderId')//route
     .all((req,res,next) => {
         res.statusCode = 200;
         res.setHeader('Content-Type','text/html');
