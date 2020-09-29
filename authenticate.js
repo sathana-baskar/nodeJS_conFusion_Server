@@ -47,6 +47,7 @@ exports.verifyUser = function (req, res, next) {
                 return next(err);
             } else {
                 req.decoded = decoded;
+                
                 next();
             }
         });
@@ -57,12 +58,13 @@ exports.verifyUser = function (req, res, next) {
     }
 };
 
-exports.verifyAdmin = function (req, res, next) {
-    if (req.user.admin) {
-        next();
+exports.verifyAdmin = function(req, res, next) {
+    // console.log(req.decoded);
+    if (req.decoded._doc.admin) {
+      return next();
     } else {
-        var err = new Error('You are not authorized to perform this operation!');
-        err.status = 403;
-        return next(err);
+      var err = new Error('You are not authorized to perform this operation!');
+      err.status = 403;
+      return next(err);
     }
-}
+  };
